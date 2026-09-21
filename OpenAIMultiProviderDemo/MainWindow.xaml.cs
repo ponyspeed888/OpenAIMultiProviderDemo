@@ -1,4 +1,6 @@
-﻿using OpenAI.Chat;
+﻿using OpenAI;
+using OpenAI.Chat;
+using OpenAIMultiProviderShared;
 using System.Diagnostics;
 using System.Text;
 using System.Windows;
@@ -25,11 +27,14 @@ namespace OpenAIMultiProviderDemo
 
         private async void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            ChatClient client = new(model: "gpt-4o", apiKey: Environment.GetEnvironmentVariable("OPENAI_API_KEY"));
+            OpenAIClient oaiClient =  MultiProvider.GetOpenAIClient(MultiProvider.GetApiKey () );
 
-            ChatCompletion completion = await client.CompleteChatAsync("Say 'this is a test.'");
+            ChatClient client = oaiClient.GetChatClient(MultiProvider.ModelLow) ;
 
-            Debug.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+
+            ChatCompletion completion = await client.CompleteChatAsync("2 + 1 = ?");
+
+            MessageBox.Show($"[ASSISTANT]: {completion.Content[0].Text}");
         }
     }
 }

@@ -9,12 +9,42 @@ namespace OpenAIMultiProviderShared
     public  class MultiProvider
     {
 
-        #region Constants
+        #region Update as needed for your environment
 
 
         public static string GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/";
         public static string AZURE_ENDPOINT = "https://<resource>.openai.azure.com/openai/v1/";
 
+#if GEMINIOPENAI
+
+#elif AZUREOPENAI
+
+
+#else
+        public static string ModelHigh = "gpt-4o";
+        public static string ModelMedium = "gpt-4o";
+        public static string ModelLow = "gpt-4o";
+
+#endif
+
+
+
+        public static string GetApiKey()
+        {
+
+#if GEMINIOPENAI
+            return Environment.GetEnvironmentVariable("GEMINI_API_KEY");
+
+#elif AZUREOPENAI
+            return Environment.GetEnvironmentVariable("AZURE_API_KEY");
+
+
+#else
+            return Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+#endif
+
+
+        }
 
         #endregion
 
