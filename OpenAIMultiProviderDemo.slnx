@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="OpenAIMultiProviderDemo/OpenAIMultiProviderDemo.csproj" />
+  <Project Path="OpenAIMultiProviderShared/OpenAIMultiProviderShared.shproj" />
+</Solution>
