@@ -23,6 +23,20 @@ namespace OpenAIMultiProviderDemo
         public MainWindow()
         {
             InitializeComponent();
+
+
+
+            string provider =
+#if GEMINIOPENAI
+                "Gemini";
+#elif AZUREOPENAI
+                "Azure";
+#elif GROQOPENAI
+                "Groq";
+#else
+                "OpenAI";
+#endif
+            btnTest.Content = $"Test : provider is {provider}";
         }
 
         private async void btnTest_Click(object sender, RoutedEventArgs e)

@@ -10,7 +10,7 @@
 
 
 	<PropertyGroup>
-		<DefineConstants>GEMINIOPENAIx;AZUREOPENAIx</DefineConstants>
+		<DefineConstants>GEMINIOPENAIx;AZUREOPENAIx;GROQOPENAIx</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
