@@ -16,3 +16,5 @@ HOW TO USE
 5. Note Azure OpenAI use deployment name, not model name, so you need to set the model to deployment name in your code.  For example, if you have a deployment named "gpt-35-turbo", you need to set the model to "gpt-35-turbo" instead of "gpt-35-turbo-0301".  The MultiProvider class will handle this for you if you set the model to the deployment name.
 6. If you use free account api key, some models won't be availe can cause a runtime error.  Gemini free account for example
 
+
+11/18/2026 : Update to .net 11
