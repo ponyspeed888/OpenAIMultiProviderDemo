@@ -1,4 +1,5 @@
-﻿using OpenAI;
+﻿using Microsoft.Extensions.AI;
+using OpenAI;
 using OpenAI.Chat;
 using OpenAIMultiProviderShared;
 using System.Diagnostics;
@@ -36,19 +37,26 @@ namespace OpenAIMultiProviderDemo
 #else
                 "OpenAI";
 #endif
-            btnTest.Content = $"Test : provider is {provider}";
+            btnTest.Content += $"Test : provider is {provider}";
+            btnTestIChatClient.Content += $"Test : provider is {provider}";
         }
 
         private async void btnTest_Click(object sender, RoutedEventArgs e)
         {
-            OpenAIClient oaiClient =  MultiProvider.GetOpenAIClient(MultiProvider.GetApiKey () );
+            OpenAIClient oaiClient = MultiProvider.GetOpenAIClient(MultiProvider.GetApiKey());
+            ChatClient client = oaiClient.GetChatClient(MultiProvider.ModelLow);
 
-            ChatClient client = oaiClient.GetChatClient(MultiProvider.ModelLow) ;
+            string response = await client.CompleteChatAsync(client, "2 + 1 = ?");
+            MessageBox.Show($"[ASSISTANT]: {response}");
 
 
-            ChatCompletion completion = await client.CompleteChatAsync("2 + 1 = ?");
-
-            MessageBox.Show($"[ASSISTANT]: {completion.Content[0].Text}");
         }
+
+        private async void btnTestIChatClient_Click(object sender, RoutedEventArgs e)
+        {
+  
+        }
+
+   
     }
 }

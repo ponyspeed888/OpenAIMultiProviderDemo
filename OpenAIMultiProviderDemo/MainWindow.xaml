@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:OpenAIMultiProviderDemo"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel Orientation="Vertical">
         <Button x:Name="btnTest" Content="Test : " Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnTest_Click"/>
-    </Grid>
+        <Button x:Name="btnTestIChatClient" Content="IChatClient : " Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnTestIChatClient_Click"/>
+    </StackPanel>
 </Window>

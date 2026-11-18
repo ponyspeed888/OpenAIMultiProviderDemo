@@ -17,4 +17,12 @@ HOW TO USE
 6. If you use free account api key, some models won't be availe can cause a runtime error.  Gemini free account for example
 
 
-11/18/2026 : Update to .net 11
+11/18/2026 Update:
+Update to .net 11
+
+
+There is another multiprovder implementation that uses IChatClient interface. It has a lot more supported providers. 
+So maybe it is the way to go. The APIs is quite different from the native OpenAI API. As a first step, I added CompleteChatAsync extension that encapsulate the difference.  
+Whether IChatClient represent a better multiprovider support is still to be seen.  If so, then this multiprovider library will move to using it exclusively.  
+If not,  I will continue added more wrapper method so that this library continue using OpenAI API, but support very simple use cases (like the very simple chat) that can be done by simple wrapper functions,  and support many more providers
+

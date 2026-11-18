@@ -1,4 +1,6 @@
-﻿using OpenAI;
+﻿using Microsoft.Extensions.AI;
+using OpenAI;
+using OpenAI.Chat;
 using System;
 using System.ClientModel;
 using System.Collections.Generic;
@@ -99,6 +101,33 @@ namespace OpenAIMultiProviderShared
 
 
 
+        }
+
+    }
+
+
+public static class MultiProviderExtensions
+    {
+        public static async Task<string> CompleteChatAsync(
+            this ChatClient _, ChatClient client, string prompt)
+        {
+#if USE_ICHAT_CLIENT_WITH_OPEN_AI_API
+
+            IChatClient iclient = client.AsIChatClient();
+
+            ChatResponse response =
+                await iclient.GetResponseAsync(prompt);
+
+            return response.Text;
+
+#else
+
+        ChatCompletion completion =
+            await client.CompleteChatAsync(prompt);
+
+        return completion.Content[0].Text;
+
+#endif
         }
     }
 }
